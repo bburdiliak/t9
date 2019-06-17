@@ -3953,6 +3953,11 @@ rambda@^2.11.1:
   resolved "https://registry.yarnpkg.com/rambda/-/rambda-2.11.1.tgz#9e2c5afd6d4d0c9ee2d5eb5b31e96ef4f337b947"
   integrity sha512-zo4X/mOHz8Sg2f+8sm9BLiwpK2DeNVKwPD+X+VgkAwag+REXVhP2STAuWKbQqejJVynBhkPaODDsnOvmWXTXdA==
 
+rambdax@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-2.9.1.tgz#82d15e9a22649afcb3e91a1fc5409a782bdd9239"
+  integrity sha512-AKnYieabGM0rGJ2Pelzqsh8SwN/BnPXpazb7cx1JZgEIMlGIF36Lme+MDAwWbp3FlriLrEYCIuGT6c+DjjsNIw==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
