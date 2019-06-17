@@ -22,7 +22,7 @@ describe('numbersToWordList', () => {
     const words = realWords('228')
     console.log('words', words)
     expect(words).toBeDefined()
-    expect(words.length).toEqual(12)
+    expect(words).toEqual(['act'])
   })
 
   test('toWordList returns proper word list for 1', () => {
