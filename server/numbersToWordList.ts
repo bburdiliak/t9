@@ -1,4 +1,4 @@
-import { concat, flatten, map, reduce, split, tail } from "rambda";
+import { concat, filter, flatten, map, reduce, split, tail } from "rambda";
 
 interface KeyboardType {
   [name: number]: string[];
@@ -20,14 +20,17 @@ const flat = (xss: string[][]) => reduce((acc, xs) => concat(xs, acc) , [], xss)
 const combine = (suffixes: string[]) => (word: string): string[] =>
   suffixes.map((suffix) => `${word}${suffix}`);
 
-const toWordList = (numbers: string) =>
-  flatten(reduce(
-    (words, numberToConvert) =>
-      flat(map(combine(keyboard[parseInt(numberToConvert, 10)]), words))
-    ,
-    keyboard[parseInt(numbers.charAt(0), 10)],
-    tail(split("", numbers))
-  ));
+const toWordList = (isExisting: ((word: string) => boolean)) => (numbers: string) =>
+  filter(
+    isExisting,
+    flatten(reduce(
+      (words, numberToConvert) =>
+        flat(map(combine(keyboard[parseInt(numberToConvert, 10)]), words))
+      ,
+      keyboard[parseInt(numbers.charAt(0), 10)],
+      tail(split("", numbers))
+    )),
+  );
 
 const testOnly = {
   combine,

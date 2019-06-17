@@ -1,10 +1,11 @@
-import express = require("express");
-import numbersToWordList = require("./numbersToWordList");
+import express from "express";
+import { isReal } from "./commonWords";
+import { toWordList } from "./numbersToWordList";
 const app: express.Application = express();
 const port = 3000;
 
 app.get("/api/v1/:numbers", (request, response) => {
-  response.send(numbersToWordList.toWordList(request.params.numbers));
+  response.send(toWordList(isReal)(request.params.numbers));
 });
 
 app.listen(port, () => {

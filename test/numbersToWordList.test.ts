@@ -1,10 +1,31 @@
 const numbersToWordList = require('../server/numbersToWordList');
-
+const commonWords = require('../server/commonWords');
 
 describe('numbersToWordList', () => {
 
+  const allWords = numbersToWordList.toWordList(() => true)
+  const realWords = numbersToWordList.toWordList(commonWords.isReal)
+
+  test('toWordList returns proper real word list for 2', () => {
+    const words = realWords('2')
+    expect(words).toBeDefined()
+    expect(words).toContain('a')
+  })
+
+  test('toWordList returns proper real word list for 27', () => {
+    const words = realWords('27')
+    expect(words).toBeDefined()
+    expect(words).toEqual(['as'])
+  })
+
+  test('toWordList returns proper real word list for 56784', () => {
+    const words = realWords('56784')
+    expect(words).toBeDefined()
+    expect(words).toEqual(['as'])
+  })
+
   test('toWordList returns proper word list for 2', () => {
-    const words = numbersToWordList.toWordList('2')
+    const words = allWords('2')
     expect(words).toBeDefined()
     expect(words).toContain('a')
     expect(words).toContain('b')
@@ -12,7 +33,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 3', () => {
-    const words = numbersToWordList.toWordList('3')
+    const words = allWords('3')
     expect(words).toBeDefined()
     expect(words).toContain('d')
     expect(words).toContain('e')
@@ -20,7 +41,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 4', () => {
-    const words = numbersToWordList.toWordList('4')
+    const words = allWords('4')
     expect(words).toBeDefined()
     expect(words).toContain('g')
     expect(words).toContain('h')
@@ -28,7 +49,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 5', () => {
-    const words = numbersToWordList.toWordList('5')
+    const words = allWords('5')
     expect(words).toBeDefined()
     expect(words).toContain('j')
     expect(words).toContain('k')
@@ -36,7 +57,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 6', () => {
-    const words = numbersToWordList.toWordList('6')
+    const words = allWords('6')
     expect(words).toBeDefined()
     expect(words).toContain('m')
     expect(words).toContain('n')
@@ -44,7 +65,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 7', () => {
-    const words = numbersToWordList.toWordList('7')
+    const words = allWords('7')
     expect(words).toBeDefined()
     expect(words).toContain('p')
     expect(words).toContain('q')
@@ -53,7 +74,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 8', () => {
-    const words = numbersToWordList.toWordList('8')
+    const words = allWords('8')
     expect(words).toBeDefined()
     expect(words).toContain('t')
     expect(words).toContain('u')
@@ -61,7 +82,7 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 9', () => {
-    const words = numbersToWordList.toWordList('9')
+    const words = allWords('9')
     expect(words).toBeDefined()
     expect(words).toContain('w')
     expect(words).toContain('x')
@@ -70,19 +91,19 @@ describe('numbersToWordList', () => {
   })
 
   test('toWordList returns proper word list for 23', () => {
-    const words = numbersToWordList.toWordList('23')
+    const words = allWords('23')
     expect(words).toBeDefined()
     expect(words.length).toEqual(9)
   })
 
   test('toWordList returns proper word list for 232', () => {
-    const words = numbersToWordList.toWordList('232')
+    const words = allWords('232')
     expect(words).toBeDefined()
     expect(words.length).toEqual(27)
   })
 
   test('toWordList returns proper word list for 237', () => {
-    const words = numbersToWordList.toWordList('237')
+    const words = allWords('237')
     expect(words).toBeDefined()
     expect(words.length).toEqual(36)
   })
