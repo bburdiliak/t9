@@ -5,7 +5,7 @@ const app: express.Application = express();
 const port = 3000;
 
 app.get("/api/v1/:numbers", (request, response) => {
-  response.send(toWordList(isReal)(request.params.numbers));
+  response.send(toWordList(() => true)(request.params.numbers));
 });
 
 app.listen(port, () => {
