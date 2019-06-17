@@ -6,23 +6,38 @@ const realWords = numbersToWordList.toWordList(commonWords.isReal)
 
 describe('numbersToWordList', () => {
 
-  // test('toWordList returns proper real word list for 2', () => {
-  //   const words = realWords('2')
-  //   expect(words).toBeDefined()
-  //   expect(words).toContain('a')
-  // })
-  //
-  // test('toWordList returns proper real word list for 27', () => {
-  //   const words = realWords('27')
-  //   expect(words).toBeDefined()
-  //   expect(words).toEqual(['as'])
-  // })
-  //
-  // test('toWordList returns proper real word list for 56784', () => {
-  //   const words = realWords('56784')
-  //   expect(words).toBeDefined()
-  //   expect(words).toEqual(['as'])
-  // })
+  test('toWordList returns proper real word list for 2', () => {
+    const words = realWords('2')
+    expect(words).toBeDefined()
+    expect(words).toContain('a')
+  })
+
+  test('toWordList returns proper real word list for 27', () => {
+    const words = realWords('27')
+    expect(words).toBeDefined()
+    expect(words).toEqual(['as'])
+  })
+
+  test('toWordList returns proper real word list for 228', () => {
+    const words = realWords('228')
+    console.log('words', words)
+    expect(words).toBeDefined()
+    expect(words).toEqual(['act'])
+  })
+
+  test('toWordList returns proper word list for 1', () => {
+    const words = allWords('1')
+    expect(words).toBeDefined()
+    expect(words).toEqual([])
+  })
+
+  test('toWordList filters out non numbers', () => {
+    const words = allWords('1a2rfr')
+    expect(words).toBeDefined()
+    expect(words).toContain('a')
+    expect(words).toContain('b')
+    expect(words).toContain('c')
+  })
 
   test('toWordList returns proper word list for 2', () => {
     const words = allWords('2')
@@ -116,12 +131,12 @@ describe('numbersToWordList', () => {
     expect(words).toContain('3')
   })
 
-  test('combine adds suffix', () => {
-    const words = numbersToWordList.testOnly.combine(['a', 'b', 'c'])('def')
+  test('addSuffix adds suffix', () => {
+    const words = numbersToWordList.testOnly.addSuffix(['a', 'b', 'c'])('def')
     expect(words).toBeDefined()
     expect(words).toContain('defa')
     expect(words).toContain('defb')
     expect(words).toContain('defc')
   })
 
-})
+});
