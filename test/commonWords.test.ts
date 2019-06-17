@@ -4,7 +4,7 @@ import { pathEq, hasPath } from "rambdax";
 describe('commonWords', () => {
 
   test('build tree contains all words it was built from', () => {
-    const tree = commonWords.buildTree(['a', 'bc', 'aed', 'argh', 'b'])
+    const tree = commonWords.buildTree(['argh', 'aed', 'bc', 'a', 'b'])
     expect(tree).toBeDefined()
     expect(hasPath('children.a.contained', tree)).toBeTruthy()
     expect(pathEq('children.a.contained', true, tree)).toBeTruthy()

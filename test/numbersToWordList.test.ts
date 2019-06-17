@@ -6,23 +6,24 @@ const realWords = numbersToWordList.toWordList(commonWords.isReal)
 
 describe('numbersToWordList', () => {
 
-  // test('toWordList returns proper real word list for 2', () => {
-  //   const words = realWords('2')
-  //   expect(words).toBeDefined()
-  //   expect(words).toContain('a')
-  // })
-  //
-  // test('toWordList returns proper real word list for 27', () => {
-  //   const words = realWords('27')
-  //   expect(words).toBeDefined()
-  //   expect(words).toEqual(['as'])
-  // })
-  //
-  // test('toWordList returns proper real word list for 56784', () => {
-  //   const words = realWords('56784')
-  //   expect(words).toBeDefined()
-  //   expect(words).toEqual(['as'])
-  // })
+  test('toWordList returns proper real word list for 2', () => {
+    const words = realWords('2')
+    expect(words).toBeDefined()
+    expect(words).toContain('a')
+  })
+
+  test('toWordList returns proper real word list for 27', () => {
+    const words = realWords('27')
+    expect(words).toBeDefined()
+    expect(words).toEqual(['as'])
+  })
+
+  test('toWordList returns proper real word list for 228', () => {
+    const words = realWords('228')
+    console.log('words', words)
+    expect(words).toBeDefined()
+    expect(words.length).toEqual(12)
+  })
 
   test('toWordList returns proper word list for 1', () => {
     const words = allWords('1')
@@ -138,4 +139,4 @@ describe('numbersToWordList', () => {
     expect(words).toContain('defc')
   })
 
-})
+});
