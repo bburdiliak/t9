@@ -24,6 +24,20 @@ describe('numbersToWordList', () => {
   //   expect(words).toEqual(['as'])
   // })
 
+  test('toWordList returns proper word list for 1', () => {
+    const words = allWords('1')
+    expect(words).toBeDefined()
+    expect(words).toEqual([])
+  })
+
+  test('toWordList filters out non numbers', () => {
+    const words = allWords('1a2rfr')
+    expect(words).toBeDefined()
+    expect(words).toContain('a')
+    expect(words).toContain('b')
+    expect(words).toContain('c')
+  })
+
   test('toWordList returns proper word list for 2', () => {
     const words = allWords('2')
     expect(words).toBeDefined()
@@ -116,8 +130,8 @@ describe('numbersToWordList', () => {
     expect(words).toContain('3')
   })
 
-  test('combine adds suffix', () => {
-    const words = numbersToWordList.testOnly.combine(['a', 'b', 'c'])('def')
+  test('addSuffix adds suffix', () => {
+    const words = numbersToWordList.testOnly.addSuffix(['a', 'b', 'c'])('def')
     expect(words).toBeDefined()
     expect(words).toContain('defa')
     expect(words).toContain('defb')

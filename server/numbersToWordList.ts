@@ -5,6 +5,7 @@ interface KeyboardType {
 }
 
 const keyboard: KeyboardType = {
+  1: [],
   2: ["a", "b", "c"],
   3: ["d", "e", "f"],
   4: ["g", "h", "i"],
@@ -15,25 +16,38 @@ const keyboard: KeyboardType = {
   9: ["w", "x", "y", "z"],
 };
 
+const onlyNumbersWithLetters: RegExp = /[2-9]+/g;
+
+const matching = (numbers: string): string =>
+  numbers.match(onlyNumbersWithLetters) ?
+    numbers.match(onlyNumbersWithLetters).join() : "";
+
+const fromKeyboard = (digits: string): string[] =>
+  keyboard[parseInt(digits, 10)];
+
 const flat = (xss: string[][]) => reduce((acc, xs) => concat(xs, acc) , [], xss);
 
-const combine = (suffixes: string[]) => (word: string): string[] =>
+const addSuffix = (suffixes: string[]) => (word: string): string[] =>
   suffixes.map((suffix) => `${word}${suffix}`);
 
-const toWordList = (isExisting: ((word: string) => boolean)) => (numbers: string) =>
-  filter(
+const toWordList = (isExisting: ((word: string) => boolean)) => (numbers: string) => {
+  const matched = matching(numbers);
+  if (!matched) { return []; }
+
+  return filter(
     isExisting,
-    flatten(reduce(
-      (words, numberToConvert) =>
-        flat(map(combine(keyboard[parseInt(numberToConvert, 10)]), words))
-      ,
-      keyboard[parseInt(numbers.charAt(0), 10)],
-      tail(split("", numbers))
-    )),
+    flatten(
+      reduce(
+        (words, numberToConvert) => flat(map(addSuffix(fromKeyboard(numberToConvert)), words)),
+        fromKeyboard(matched.charAt(0)),
+        tail(split("", matched))
+      )
+    ),
   );
+};
 
 const testOnly = {
-  combine,
+  addSuffix,
   flat,
 };
 

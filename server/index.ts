@@ -5,7 +5,10 @@ const app: express.Application = express();
 const port = 3000;
 
 app.get("/api/v1/:numbers", (request, response) => {
-  response.send(toWordList(() => true)(request.params.numbers));
+  response.header("Access-Control-Allow-Origin", "*");
+  response.json({
+    words: toWordList(() => true)(request.params.numbers),
+  });
 });
 
 app.listen(port, () => {
